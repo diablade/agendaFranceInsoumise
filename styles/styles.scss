@@ -1,0 +1,378 @@
+// Brand Colors
+$brand-primary: #7761a7;
+$brand-success: #09b39c;
+$brand-warning: #f16e3f;
+$brand-danger: #e4545b;
+$brand-info: #33ccff;
+
+// General
+$line-height-base: 1.5;
+
+// Buttons
+$btn-default-bg: #fff;
+$btn-default-color: #717171;
+$btn-default-border: #95a1b5;
+
+// Alert General
+$alert-border-radius: 3px;
+
+// Alert Info
+$alert-info-bg: #e5f7fd;
+$alert-info-border: #bcf8f3;
+$alert-info-text: #25484e;
+
+// Alert Success
+$alert-success-bg: #dff0d7;
+$alert-success-border: #d6e9c4;
+$alert-success-text: #3c763e;
+
+// Alert Warning
+$alert-warning-bg: #fcf8e4;
+$alert-warning-border: #faebcd;
+$alert-warning-text: #8a6d3c;
+
+// Alert Danger
+$alert-danger-bg: #f2dedf;
+$alert-danger-border: #ebccd2;
+$alert-danger-text: #a94541;
+
+$state-info-text: $brand-info;
+$state-danger-text: #d14;
+$link-color: #80bd01;
+$link-hover-color: $link-color;
+
+// Jumbotron
+$jumbotron-bg: #4c5566;
+$jumbotron-color: #fff;
+
+// Navbar
+$navbar-default-bg: #fff;
+$navbar-default-link-color: #3F4148;
+$navbar-default-link-hover-bg: #f9f9f9;
+$navbar-default-toggle-icon-bar-bg: #3F4148;
+$navbar-default-toggle-hover-bg: rgba($brand-primary, 0.1);
+$navbar-margin-bottom: 0;
+
+// Panels
+$panel-border-radius: 0;
+$panel-default-border: #ebeff5;
+
+$panel-success-text: #fff;
+$panel-success-border: #089b87;
+$panel-success-heading-bg: $brand-success;
+
+$panel-info-text: #fff;
+$panel-info-heading-bg: #33ccff;
+
+$panel-warning-text: #fff;
+$panel-warning-border: $brand-warning;
+$panel-warning-heading-bg: $brand-warning;
+
+$panel-danger-text: #fff;
+$panel-danger-border: $brand-danger;
+$panel-danger-heading-bg: $brand-danger;
+
+$list-group-border: #ebeff6;
+
+@import 'lib/bootstrap/bootstrap';
+@import 'lib/font-awesome/font-awesome';
+@import 'lib/xcode';
+
+.alert {
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.09);
+}
+
+kbd {
+  padding: .1em .6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 .1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.navbar-brand {
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzBweCIgaGVpZ2h0PSIzMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZmlsbD0iI2U0NTQ1YiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGlkPSJjc3MtY29kZS1pY29uIiBkPSJNMTQwLjg2OSAyNTZjMTcuNjg2IDcuOCAzMC4yIDI0LjUgMzAuMiA1NHYzNC40NTdjMCAyNSAyMi40IDMyLjkgNDEuNSAzMy40OTR2MzYuODYxIGMtNTIuMjY1IDAtODMuMTEyLTE3LjktODMuMTEyLTY2LjIzNHYtMzguMzgzYzAtMjQuNTQ3LTE5LjQ5OS0zNS41MzctMzkuMzUzLTM1LjUzN3YtMzcuMzE2YzE5Ljg1NCAwIDM5LjM1My0xMC45ODkgMzkuMzUzLTM1LjUzNiB2LTM4LjM4NGMwLTQ4LjMzMyAzMC44NDgtNjYuMjM0IDgzLjExMi02Ni4yMzR2MzYuODYxYy0xOS4xNjkgMC41ODItNDEuNTQ4IDguNTM5LTQxLjU0OCAzMy40OTVWMjAyIEMxNzEuMTE5IDIzMS41IDE1OC42IDI0OC4yIDE0MC45IDI1NnogTTM0MC44ODEgMjAydi0zNC40NTZjMC0yNC45NTYtMjIuMzc5LTMyLjkxMy00MS41NDgtMzMuNDk1Vjk3LjE4OCBjNTIuMjY1IDAgODMuMSAxNy45IDgzLjEgNjYuMjM0djM4LjM4NGMwIDI0LjUgMTkuNSAzNS41IDM5LjQgMzUuNTM2djM3LjMxNmMtMTkuODU0IDAtMzkuMzUzIDEwLjk5LTM5LjM1MyAzNS41IHYzOC4zODNjMCA0OC4zMzQtMzAuODQ4IDY2LjIzNC04My4xMTIgNjYuMjM0di0zNi44NjFjMTkuMTY5LTAuNTgyIDQxLjU0OC04LjUzOSA0MS41NDgtMzMuNDk0VjMxMGMwLTI5LjUgMTIuNTY0LTQ2LjI1IDMwLjI1LTU0IEMzNTMuNDQ1IDI0OC4yIDM0MC45IDIzMS41IDM0MC45IDIwMnoiLz4KPC9zdmc+Cg==) no-repeat left center;
+  background-size: 40px;
+  padding-left: 40px;
+}
+
+.navbar-default {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar-static-top {
+  z-index: 1;
+}
+
+html, body {
+  height: 100%;
+}
+
+.jumbotron {
+  background: #4c5566 url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIGZpbGw9IiMzZDQ0NTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggaWQ9ImJvb2stMTctaWNvbiIgZD0iTTQ0MS40MTggMTU4LjQ1NXYxOTUuMTY3bC0xMi40NDUgMlYxNTguNDU1VjExOC45N2MtNjYuODU2IDIuMDQtMTMwLjE0NiAxMi43ODgtMTczIDM5LjUgYy00Mi44NTYtMjYuNjc4LTEwNi4xNDQtMzcuNDI2LTE3My0zOS40NjZ2MzkuNDg1djE5Ny4xNjdsLTEyLjQ0NS0yVjE1OC40NTVoLTIwLjV2MjE5LjAwMWgxNTUuNDUgYzI1LjM3NiAwIDI4LjIgMTUuNiA1MC41IDE1LjU3NGMyMi4zNzYgMCAyNS4wNzEtMTUuNTc0IDUwLjQ5Ni0xNS41NzRoMTU1LjUwNFYxNTguNDU1SDQ0MS40MTh6IE0yMzguOTgyIDM1Mi45IGMtMzMuNDAyLTEzLjI1My03My44OTItMjEuNzgtMTIzLjAyOS0yNS40NzRWMTU0LjljNDAuMzU0IDMuNCA4OC42IDExLjYgMTIzIDMyLjk4NFYzNTIuODkyeiBNMzk1Ljk5MiAzMjcuNCBjLTQ5LjEzOCAzLjY5My04OS42MjggMTIuMjIxLTEyMy4wMjkgMjUuNDc0VjE4Ny44ODVjMzQuMzk0LTIxLjM5NyA4Mi42NzUtMjkuNTk5IDEyMy4wMjktMzIuOTg0VjMyNy40MTh6Ii8+Cjwvc3ZnPgo=) no-repeat right;
+  background-size: contain;
+}
+
+.inverse {
+  color: #fff;
+  background-color: #333;
+}
+
+.social-bar {
+  margin-top: -30px;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  background-color: #3D4452;
+}
+
+.panel {
+  box-shadow: 0 0 0 1px rgba(187, 187, 187, 0.1), 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-color: #ebeff6;
+}
+
+.panel-title {
+  font-weight: 400;
+}
+
+.list-group-item {
+  border: 0;
+  border-bottom: 1px solid #ebeff6;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -120px;
+  /* Pad bottom by footer height + (optional) extra spacing */
+  padding: 0 0 130px;
+}
+
+#footer {
+  color: #a7afbe;
+  background-color: #3D4452;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 120px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+
+  a {
+    color: lighten(#a7afbe, 15%);
+  }
+}
+
+pre {
+  color: #353535;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 20px 0;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e7e7e7;
+  border-bottom: 1px solid #ddd;
+  -webkit-box-shadow: 0 1px 3px 0 #eee;
+  -webkit-border-radius: 3px;
+}
+
+pre code {
+  font-family: monaco, monospace;
+  font-size: 0.80em;
+}
+
+.container img {
+  max-width: 100%;
+}
+
+.jumbotron p {
+  margin-bottom: 0;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #a7afbe;
+}
+
+.jumbotron .hint {
+  margin-top: 5px;
+  font-weight: 300;
+  color: #a7afbe;
+}
+
+.jumbotron a {
+  color: #fff;
+}
+
+.fa {
+  display: inline;
+  margin-right: 5px;
+}
+
+.btn-default {
+  border-color: rgba(150, 160, 180, 0.3);
+  color: #717171;
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    background-color: #fcfcfe;
+    border-color: rgba(150, 160, 180, 0.3);
+  }
+}
+
+.form-inline .form-group, .navbar-form .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+/*Forms*/
+.form-horizontal.group-border .form-group {
+  padding: 5px 0 15px 0;
+}
+
+.form-horizontal.group-border .form-group label {
+  margin-bottom: 7px;
+}
+
+.form-horizontal.group-border-dashed .form-group label {
+  margin-bottom: 7px;
+}
+
+/*Forms*/
+label {
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.form-horizontal.group-border .form-group {
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #efefef;
+}
+
+.form-horizontal.group-border .form-group:last-child {
+  border-bottom: 0;
+}
+
+.form-horizontal.group-border-dashed .form-group {
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px dashed #efefef;
+}
+
+.form-horizontal.group-border-dashed .form-group:last-child {
+  border-bottom: 0;
+}
+
+.form-control {
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #ccc;
+  box-shadow: none;
+  background-color: #F4F5F7;
+}
+
+select.form-control,
+textarea.form-control {
+  padding: 6px 8px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.navbar-form {
+  .btn {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Styling for the ngProgress itself */
+#ngProgress {
+  margin: 0;
+  padding: 0;
+  z-index: 99998;
+  background-color: green;
+  color: green;
+  box-shadow: 0 0 10px 0; /* Inherits the font color */
+  height: 2px;
+  opacity: 0;
+
+  /* Add CSS3 styles for transition smoothing */
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Styling for the ngProgress-container */
+#ngProgress-container {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.edit-on-github {
+  position: fixed;
+  bottom: 1.5em;
+  right: 1.5em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 0.7em;
+  display: none;
+  text-shadow: 0px 0px 2px #111;
+}
+
+.edit-on-github:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  color: #fff;
+}
+
+.toggle {
+  -webkit-transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -ms-transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* easeOutQuad */
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -ms-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* easeOutQuad */
+}
+
+// Responsive YouTube
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
