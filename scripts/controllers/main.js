@@ -3,13 +3,36 @@ angular.module('MyApp')
 		//from Lyon3
 		//https://api.lafranceinsoumise.fr/legacy/events/?order_by_distance_to=[4.877817,45.728113]
 		$rootScope.baseApiUrl = 'https://api.lafranceinsoumise.fr/legacy/';
-		$scope.distance = 15000;
+		$scope.distance = 100000;
 		$scope.point = {
 			lon : "4.877817",
 			lat : "45.728113"
 		};
+		//#0098b6
+		// LIST EVENEMENTS avec plus de 6 de participants
+		$scope.eventsHigh = {
+			events: [],
+			color: '#0098b6',
+			textColor: 'white'
+		};
+		// list avec moins de 6 participants
+		$scope.eventsMiddle = {
+			events: [],
+			color: '#ff877a',
+			textColor: 'white'
+		};
+		// list avec moins de 3 participants
+		$scope.eventsLow = {
+			events: [],
+			color: '#d11dad',
+			textColor: 'white'
+		};
 		$scope.events = [];
 		$scope.evenements = [];
+		$scope.evenements.push($scope.eventsHigh);
+		$scope.evenements.push($scope.eventsMiddle);
+		$scope.evenements.push($scope.eventsLow);
+
 		$scope.uiConfig = {
 			calendar: {
 				editable: false,
@@ -43,6 +66,10 @@ angular.module('MyApp')
 		};
 
 		$scope.resetAgenda = function (geoloc) {
+			$scope.eventsHigh.events = [];
+			$scope.eventsMiddle.events = [];
+			$scope.eventsLow.events = [];
+
 			if (geoloc) {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(reload);
@@ -58,22 +85,14 @@ angular.module('MyApp')
 
 		function reload(position) {
 			if (position) {
-				$scope.latitude = position.coords.latitude;
-				$scope.longitude = position.coords.longitude;
+				$scope.point.lat = position.coords.latitude;
+				$scope.point.lon = position.coords.longitude;
 				//get codepostal from position put after
 				//reloadIframe(codePostal);
-				reloadAgenda();
 			}
 			else {
-				reloadIframe($scope.codePostal);
-				reloadAgenda();
+				//reloadIframe($scope.codePostal);
 			}
-
-		}
-
-		function reloadAgenda() {
-			$scope.evenements = [];
-			$scope.events = [];
 			getEvents();
 		}
 
@@ -85,10 +104,17 @@ angular.module('MyApp')
 						event.start = data._items[i].start_time;
 						event.end = data._items[i].end_time;
 						event.title = data._items[i].name;
-						event.url = "https://www.lafranceinsoumise.fr/" + data._items[i].path;
-						$scope.events.push(event);
+						event.url = "https://agir.lafranceinsoumise.fr/" + data._items[i].path;
+						if (event.participants > 3 || !event.participants) {
+							$scope.eventsLow.events.push(event);
+						}
+						else if (event.participants > 6) {
+							$scope.eventsMiddle.events.push(event);
+						}
+						else {
+							$scope.eventsHigh.events.push(event);
+						}
 					}
-					$scope.evenements.push({events: $scope.events, color: '#0098b6', textColor: '#fcfcfc'});
 				})
 				.error(function () {
 					var btns = [

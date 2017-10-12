@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="MainCtrl" style="height:746px;padding-top:15px;">
   <div class="col-sm-6">
     <div class="col-sm-12" style="margin-bottom:10px;">
-      <div> Voir dans l'agenda tous les événements dans un rayon de :
+      <div> Voir dans l'agenda tous les événements autour de moi dans un rayon de :
       </div>
       <div class="col-sm-12">
         <form>
@@ -14,10 +14,11 @@
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="50000">50km</label>
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="100000">100km</label>
         </form>
+        <button ng-click="resetAgenda(true)">rechercher</button>
       </div>
-      <button ng-click="resetAgenda(true)">autour de moi</button> ou par
-      <input type="text" name="codePostal" placeholder="code postal" ng-model="codePostal" />
-      <button ng-click="resetAgenda(false)">ok</button>
+      <!--ou par-->
+      <!--<input type="text" name="codePostal" placeholder="code postal" ng-model="codePostal" />-->
+      <!--<button ng-click="resetAgenda(false)">ok</button>-->
     </div>
     <div class="panel" style="padding:5px;margin-top:10px;">
       <div ui-calendar="uiConfig.calendar" ng-model="evenements"></div>
