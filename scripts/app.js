@@ -1,7 +1,5 @@
 angular.module('MyApp', ['ngRoute', 'ngProgress', 'ui.calendar'])
-  .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $locationProvider.hashPrefix('!');
-
+  .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

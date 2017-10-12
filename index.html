@@ -2,62 +2,61 @@
 <html ng-app="MyApp">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>agenda insoumis lyonnais</title>
-  <meta name="description" content="agenda lyonnais insoumis">
-  <meta name="viewport" content="width=device-width">
-  <link rel="icon" type="image/png" href="https://lafranceinsoumise.fr/app/uploads/2017/01/cropped-cropped-phi-32x32.png">
-  <link rel="stylesheet" href="styles/styles.css">
-  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>agenda insoumis lyonnais</title>
+	<meta name="description" content="agenda lyonnais insoumis">
+	<meta name="viewport" content="width=device-width">
+	<link rel="icon" type="image/png"
+		  href="https://lafranceinsoumise.fr/app/uploads/2017/01/cropped-cropped-phi-32x32.png">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
 </head>
 
 <body>
-  <div id="wrap">
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color: #c9462c;">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" style="color:white; margin-left: 10px;" href="#!/">  Agenda / évènements <strong> INSOUMIS </strong> :)</a>
-        </div>
-      </div>
-    </nav>
+<div id="wrap">
+	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color: #c9462c;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" style="color:white; margin-left: 10px;"> Agenda / évènements <strong>
+					INSOUMIS </strong> :-)</a>
+			</div>
+		</div>
+	</nav>
 
-    <div class="page" ng-view></div>
-  </div>
+	<div class="page" ng-view></div>
+</div>
 
-  <div id="footer">
-    <div class="container text-center">
-      <div>Créé par
-        <a href="https://www.facebook.com/markovic.nicolas">Markovic Nicolas</a>
-        <a href="https://github.com/diablade/agendaFranceInsoumise" > {help me on GitHub}</a>
-      </div>
-    </div>
-  </div>
+<div id="footer">
+	<div class="container text-center">
+		<div>Créé par
+			<a href="https://www.facebook.com/markovic.nicolas">Markovic Nicolas</a>
+			<a href="https://github.com/diablade/agendaFranceInsoumise"> {help me on GitHub}</a>
+		</div>
+	</div>
+</div>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36852860-5"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-36852860-5');
+</script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/lib/bootstrap.min.js"></script>
 
-  <!-- google analytics -->
-  <script>
-  </script>
-  <!--
-  <script type="text/javascript" src="bower_components/lib/showdown.min.js"></script>
-  <script type="text/javascript" src="bower_components/lib/highlight.min.js"></script>
-  <script type="text/javascript" src="scripts/directives/markdown.js"></script>
-  <script type="text/javascript" src="scripts/directives/scroll.js"></script>
--->
-  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bower_components/lib/bootstrap.min.js"></script>
-  
-  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular/angular-route.min.js"></script>
-  <script type="text/javascript" src="bower_components/lib/ngProgress.min.js"></script>
-  <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/controllers/main.js"></script>
-  <!-- jquery, moment, and angular have to get included before fullcalendar -->
-  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-  <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
-  <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-  <script type="text/javascript" src="bower_components/fullcalendar/dist/lang/fr.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular-route.min.js"></script>
+<script type="text/javascript" src="bower_components/lib/ngProgress.min.js"></script>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/controllers/main.js"></script>
+<!-- jquery, moment, and angular have to get included before fullcalendar -->
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script type="text/javascript" src="bower_components/fullcalendar/dist/lang/fr.js"></script>
 
 </body>
 
