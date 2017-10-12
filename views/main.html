@@ -1,15 +1,18 @@
-<div class="container-fluid" ng-controller="MainCtrl">
+<div class="container-fluid" ng-controller="MainCtrl" style="height:746px;padding-top:15px;">
   <div class="col-sm-6">
-    <div class="row" style="height:60px; padding:10px;">
-      <div class="">
-        Voir dans l'agenda les événements dans un rayon de :
+    <div class="col-sm-12" style="margin-bottom:10px;">
+      <div> Voir dans l'agenda tous les événements dans un rayon de :
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-12">
         <form>
-          <label class="radio-inline"><input type="radio" name="optradio">5km</label>
-          <label class="radio-inline"><input type="radio" name="optradio">10km</label>
-          <label class="radio-inline"><input type="radio" name="optradio">15km</label>
-          <label class="radio-inline"><input type="radio" name="optradio">20km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="1000">1km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="2000">2km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="5000">5km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="10000">10km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="15000">15km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="30000">30km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="50000">50km</label>
+          <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="100000">100km</label>
         </form>
       </div>
       <button ng-click="resetAgenda(true)">autour de moi</button> ou par
