@@ -1,9 +1,9 @@
-<div class="container-fluid" ng-controller="MainCtrl" style="height:746px;padding-top:15px;">
-  <div class="col-sm-6">
-    <div class="col-sm-12" style="margin-bottom:10px;">
+<div class="container-fluid" ng-controller="MainCtrl" style="height:746px;margin-top:15px;">
+  <div class="col-sm-6 panel">
+    <div class="col-sm-12" style="margin-top: 10px;">
       <div> Voir dans l'agenda tous les événements autour de moi dans un rayon de :
       </div>
-      <div class="col-sm-12">
+      <div class="col-sm-12" style="margin-bottom: 15px;">
         <form>
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="1000">1km</label>
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="2000">2km</label>
@@ -13,19 +13,19 @@
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="30000">30km</label>
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="50000">50km</label>
           <label class="radio-inline"><input type="radio" name="optKm" ng-model="distance" value="100000">100km</label>
+        <button  style="margin-left: 5px;" ng-click="resetAgenda(true)">rechercher</button>
         </form>
-        <button ng-click="resetAgenda(true)">rechercher</button>
       </div>
       <!--ou par-->
       <!--<input type="text" name="codePostal" placeholder="code postal" ng-model="codePostal" />-->
       <!--<button ng-click="resetAgenda(false)">ok</button>-->
     </div>
-    <div class="panel" style="padding:5px;margin-top:10px;">
+    <div class="" style="padding-bottom:15px;margin-top:10px;">
       <div ui-calendar="uiConfig.calendar" ng-model="evenements"></div>
     </div>
   </div>
   <div class="col-sm-6">
-    <div style="height:700px;margin:10px;">
+    <div style="height:700px;">
       <iframe id="mapframe" style="width:100%;height:100%;" src="https://carte.lafranceinsoumise.fr/?zipcode=69003&event_type=evenements_locaux,reunions_circonscription">
       </iframe>
     </div>

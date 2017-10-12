@@ -1,12 +1,13 @@
 angular.module('MyApp')
-	.controller('MainCtrl', ['$scope', '$rootScope', '$route', '$window', '$routeParams', 'ngProgress', '$http', function ($scope, $rootScope, $route, $window, $routeParams, ngProgress, $http) {
+	.controller('MainCtrl', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
 		//from Lyon3
 		//https://api.lafranceinsoumise.fr/legacy/events/?order_by_distance_to=[4.877817,45.728113]
 		$rootScope.baseApiUrl = 'https://api.lafranceinsoumise.fr/legacy/';
-		$scope.distance = 100000;
+		$scope.distance = 30000;
+		$scope.codePostal = 69003;
 		$scope.point = {
-			lon : "4.877817",
-			lat : "45.728113"
+			lon: "4.877817",
+			lat: "45.728113"
 		};
 		//#0098b6
 		// LIST EVENEMENTS avec plus de 6 de participants
@@ -37,9 +38,9 @@ angular.module('MyApp')
 			calendar: {
 				editable: false,
 				header: {
-					left: 'month agendaWeek agendaDay',
+					left: '',
 					center: 'title',
-					right: 'today prev,next'
+					right: 'today prev,next agendaDay,agendaWeek,month'
 				},
 				onEventClick: function (args) {
 					console.log(args);
@@ -47,16 +48,12 @@ angular.module('MyApp')
 				eventClicked: function (args) {
 					console.log(args);
 				}
-				/*eventDrop: $scope.alertOnDrop,
-				eventResize: $scope.alertOnResize*/
 			}
 		};
 		$scope.uiConfig.calendar.dayNames = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 		$scope.uiConfig.calendar.dayNamesShort = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 		$scope.uiConfig.calendar.monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 		$scope.uiConfig.calendar.monthNamesShort = ["Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc."];
-
-		getEvents();
 
 		$scope.zoomOnEvent = function (id) {
 			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?&event_id=" + id + ",events";
@@ -75,7 +72,7 @@ angular.module('MyApp')
 					navigator.geolocation.getCurrentPosition(reload);
 				}
 				else {
-					$dialog.messageBox("Geolocation is not supported by this browser.");
+					alert("Geolocalisation non détecté depuis votre navigateur.");
 				}
 			}
 			else {
@@ -87,28 +84,38 @@ angular.module('MyApp')
 			if (position) {
 				$scope.point.lat = position.coords.latitude;
 				$scope.point.lon = position.coords.longitude;
-				//get codepostal from position put after
-				//reloadIframe(codePostal);
 			}
-			else {
-				//reloadIframe($scope.codePostal);
-			}
+			//get codepostal from position
+			getPostalCodeFromGeoLoc($scope.point);
 			getEvents();
 		}
 
+		function getPostalCodeFromGeoLoc(point) {
+			var host = "https://nominatim.openstreetmap.org/";
+			var route = "/search/?format=json&q=";
+			var cp = /((2[A|B])|[0-9]{2})[0-9]{3}/;
+			var url = host + route + point.lat + ',' + point.lon;
+			$http.get(url).success(function (data) {
+				if (data) {
+					$scope.codePostal = data[0].display_name.match(cp)[0];
+					reloadIframeOnCodePostal($scope.codePostal);
+				}
+			});
+		}
+
 		function getEvents() {
-			$http.get($rootScope.baseApiUrl + '/events/?max_results=100&close_to={"max_distance":"'+$scope.distance+'","coordinates":["'+ $scope.point.lon+'","'+ $scope.point.lat+'"]}')
+			$http.get($rootScope.baseApiUrl + '/events/?max_results=100&close_to={"max_distance":"' + $scope.distance + '","coordinates":["' + $scope.point.lon + '","' + $scope.point.lat + '"]}')
 				.success(function (data) {
 					for (var i = 0, len = data._items.length; i < len; i++) {
 						var event = data._items[i];
 						event.start = data._items[i].start_time;
 						event.end = data._items[i].end_time;
-						event.title = data._items[i].name;
+						event.title = "("+event.participants+")"+data._items[i].name;
 						event.url = "https://agir.lafranceinsoumise.fr/" + data._items[i].path;
-						if (event.participants > 3 || !event.participants) {
+						if (event.participants < 3 || !event.participants) {
 							$scope.eventsLow.events.push(event);
 						}
-						else if (event.participants > 6) {
+						else if (event.participants < 6) {
 							$scope.eventsMiddle.events.push(event);
 						}
 						else {
@@ -122,5 +129,23 @@ angular.module('MyApp')
 					];
 					$dialog.messageBox("Erreur", "Impossible de charger la liste des evenements", btns).open();
 				});
+		}
+
+		function reloadIframeOnCodePostal(zipcode) {
+			console.log("reload ifram with codePostal=", zipcode);
+			document.getElementById('mapframe').src = "";
+			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?zipcode=" + zipcode + "&event_type=evenements_locaux,reunions_circonscription";
+		}
+
+		function reloadIframeOnIdEvent(id) {
+			console.log("reload ifram on event=", id);
+			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?&event_id=" + id + ",events";
+		}
+
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(reload);
+		}
+		else {
+			alert("Geolocalisation non détecté depuis votre navigateur.");
 		}
 	}]);
