@@ -55,13 +55,6 @@ angular.module('MyApp')
 		$scope.uiConfig.calendar.monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 		$scope.uiConfig.calendar.monthNamesShort = ["Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc."];
 
-		$scope.zoomOnEvent = function (id) {
-			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?&event_id=" + id + ",events";
-		};
-		$scope.reloadIframe = function (zipcode) {
-			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?zipcode=" + zipcode + "&event_type=evenements_locaux,reunions_circonscription";
-		};
-
 		$scope.resetAgenda = function (geoloc) {
 			$scope.eventsHigh.events = [];
 			$scope.eventsMiddle.events = [];
@@ -69,18 +62,18 @@ angular.module('MyApp')
 
 			if (geoloc) {
 				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(reload);
+					navigator.geolocation.getCurrentPosition(reloadWithGeoloc);
 				}
 				else {
 					alert("Geolocalisation non détecté depuis votre navigateur.");
 				}
 			}
 			else {
-				reload();
+				reloadWithPostalCode($scope.codePostal);
 			}
 		};
 
-		function reload(position) {
+		function reloadWithGeoloc(position) {
 			if (position) {
 				$scope.point.lat = position.coords.latitude;
 				$scope.point.lon = position.coords.longitude;
@@ -88,6 +81,26 @@ angular.module('MyApp')
 			//get codepostal from position
 			getPostalCodeFromGeoLoc($scope.point);
 			getEvents();
+		}
+		function reloadWithPostalCode(codepostal) {
+			if (!codepostal) {
+				$scope.codePostal = 69003;
+			}
+			//get postion of codepostal
+			getPositionFromPostalCode($scope.codePostal);
+
+		}
+		function getPositionFromPostalCode(codepostal) {
+			var host = "https://nominatim.openstreetmap.org/";
+			var route = "/search/?format=json&q=";
+			var url = host + route + codepostal + ",France";
+			$http.get(url).success(function(data) {
+				if (data) {
+					$scope.point.lon = data[0].lon;
+					$scope.point.lat = data[0].lat;
+					getEvents();
+				}
+			});
 		}
 
 		function getPostalCodeFromGeoLoc(point) {
@@ -102,7 +115,6 @@ angular.module('MyApp')
 				}
 			});
 		}
-
 		function getEvents() {
 			$http.get($rootScope.baseApiUrl + '/events/?max_results=100&close_to={"max_distance":"' + $scope.distance + '","coordinates":["' + $scope.point.lon + '","' + $scope.point.lat + '"]}')
 				.success(function (data) {
@@ -136,16 +148,16 @@ angular.module('MyApp')
 			document.getElementById('mapframe').src = "";
 			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?zipcode=" + zipcode + "&event_type=evenements_locaux,reunions_circonscription";
 		}
-
 		function reloadIframeOnIdEvent(id) {
 			console.log("reload ifram on event=", id);
 			document.getElementById('mapframe').src = "https://carte.lafranceinsoumise.fr/?&event_id=" + id + ",events";
 		}
 
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(reload);
+			navigator.geolocation.getCurrentPosition(reloadWithGeoloc);
 		}
 		else {
 			alert("Geolocalisation non détecté depuis votre navigateur.");
+			reloadWithPostalCode($scope.codePostal);
 		}
 	}]);
