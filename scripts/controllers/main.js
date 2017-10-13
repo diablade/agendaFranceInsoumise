@@ -87,6 +87,7 @@ angular.module('MyApp')
 				$scope.codePostal = 69003;
 			}
 			//get postion of codepostal
+			reloadIframeOnCodePostal($scope.codePostal);
 			getPositionFromPostalCode($scope.codePostal);
 
 		}
