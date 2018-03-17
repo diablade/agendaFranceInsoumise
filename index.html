@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="MyApp">
+<html>
 
 <head>
 	<meta charset="utf-8">
@@ -9,8 +9,16 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="icon" type="image/png"
 		  href="https://lafranceinsoumise.fr/app/uploads/2017/01/cropped-cropped-phi-32x32.png">
-	<link rel="stylesheet" href="styles/styles.css">
-	<link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/fr.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </head>
 
 <body>
@@ -24,7 +32,51 @@
 		</div>
 	</nav>
 
-	<div class="page" ng-view></div>
+	<div class="row" style="height:746px;padding-top:15px; text-align: center;">
+		<div class="col-12 col-sm-12 col-md-6" style="height:100%;">
+			<div class="col-sm-12" style="margin-bottom:10px;">
+				<div> Voir dans l'agenda tous les événements dans un rayon de :
+				</div>
+				<div class="col-sm-12">
+					<form>
+						<label class="radio-inline"><input type="radio" name="optKm" value="1000">1km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="2000">2km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="5000">5km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="10000">10km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="15000">15km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" checked value="30000">30km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="50000">50km</label>
+						<label class="radio-inline"><input type="radio" name="optKm" value="100000">100km</label>
+					</form>
+				</div>
+				<button onclick="search(true)">autour de moi</button> ou par
+				<input id="codePostal" type="text" name="codePostal" placeholder="code postal" />
+				<button onclick="search(false)">Rechercher</button>
+			</div>
+			<div class="col-sm-12" style="padding:5px;margin-top:10px;">
+				<div id="loading" class="loading">
+					<div class="loading-animation">
+						<div class="loading-bar"></div>
+						<div class="loading-bar"></div>
+						<div class="loading-bar"></div>
+						<div class="loading-bar"></div>
+					</div>
+				</div>
+				<div id="calendar"></div>
+			</div>
+			<div class="col-sm-12"> colorisation par nombre de participants inscris à l'évenement : </div>
+			<label class="radio-inline p p1">1</label>
+			<label class="radio-inline p p2">2+</label>
+			<label class="radio-inline p p5">5+</label>
+			<label class="radio-inline p p10">10+</label>
+			<label class="radio-inline p p15">15+</label>
+			<label class="radio-inline p p30">30+</label>
+		</div>
+		<div class="col-12 col-sm-12 col-md-6" style="height:100%;">
+			<iframe id="mapframe" style="width:100%;height:100%;" src="https://carte.lafranceinsoumise.fr/?zipcode=69003&event_type=evenements_locaux,reunions_circonscription">
+      			</iframe>
+		</div>
+	</div>
 </div>
 
 <footer id="footer">
@@ -45,19 +97,6 @@
 	gtag('js', new Date());
 	gtag('config', 'UA-36852860-5');
 </script>
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="bower_components/lib/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="bower_components/angular/angular-route.min.js"></script>
-<script type="text/javascript" src="bower_components/lib/ngProgress.min.js"></script>
-<script type="text/javascript" src="scripts/app.js"></script>
-<script type="text/javascript" src="scripts/controllers/main.js"></script>
-<!-- jquery, moment, and angular have to get included before fullcalendar -->
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-<script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-<script type="text/javascript" src="bower_components/fullcalendar/dist/lang/fr.js"></script>
 
 </body>
 
