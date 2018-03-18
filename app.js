@@ -13,6 +13,7 @@ var events = [];
 $(document).ready(function() {
     calendar = $('#calendar');
     calendar.fullCalendar({
+        height: 'parent',
         themeSystem: 'bootstrap4',
         header: {
             left: 'title',

@@ -57,14 +57,14 @@
     margin-right: 5px;
 }
 #footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   color: #a7afbe;
   background-color: #3D4452;
   padding-top: 20px;
   padding-bottom: 20px;
-  height: 60px;
+  height: 80px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15); 
 }
   #footer a {
@@ -93,4 +93,34 @@
 }
 .p30{
     background: purple;
+}
+
+
+#site-header {
+    background-color: #ffffff;
+}
+#site-header-inner {
+    position: relative;
+    text-align: center;
+    height: 100%;
+}
+#wrap{
+    padding:5px;
+}
+.map{
+    /*padding-right: 5px;*/
+    height:746px;
+}
+#calendar{
+    min-height: 500px;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+#codePostal{
+    padding: 5px;
+    width: inherit;
+    text-align: center;
+    border: 1px solid #8c8c8c;
 }
